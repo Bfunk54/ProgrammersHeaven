@@ -84,6 +84,20 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
+router.get("/create-post", withAuth, (req, res) => {
+
+  const currentUser = {
+    user_id: req.session.user_id,
+    email: req.session.email,
+    name: req.session.name
+  }
+
+  res.render("create-post", {
+    currentUser,
+    logged_in: req.session.logged_in
+  });
+});
+
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
