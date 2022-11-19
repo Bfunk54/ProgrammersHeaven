@@ -5,27 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Programmer's Heaven</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
-<body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <a href="/">Programmer's Heaven</a>
-      </h1>
       <nav>
-        <a href="/create-post">Create Post</a>
+        <div class="nav-wrapper">
+      <a href="/" class="brand-logo hide-on-sm-and-down">Programmer's Heaven</a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="/create-post">New Post</a></li>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/dashboard">dashboard</a> |
-        <button class="no-button" id="logout">logout</button>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a class="no-button" id="logout">Logout</a></li>
         {{else}}
-        <a href="/login">login</a>
+       <li><a href="/login">Login</a></li>
         {{/if}}
+        </ul>
+        </div>
       </nav>
     </header>
+    <body>
+    <div class="flex-column justify-space-around">
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
       {{{ body }}}
