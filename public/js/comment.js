@@ -20,7 +20,7 @@ const commentFormHandler = async function (event) {
   }else {
     alert("Failed to create comment");
   }
-}
+    }
 };
 
 console.log(document.querySelector("#new-comment-form"));
