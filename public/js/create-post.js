@@ -3,6 +3,7 @@ const newFormHandler = async (event) => {
 
   const name = document.querySelector('#post-name').value.trim();
   const content = document.querySelector('#post-content').value.trim();
+  console.log(content);
   console.log(JSON.stringify({name, content}));
   if (name && content) {
     const response = await fetch(`/api/create-post`, {
