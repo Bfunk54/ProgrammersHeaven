@@ -2,4 +2,9 @@
   <h2>{{post_title}}</h2>
   <p>{{post}}</p>
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
+  <p class="post-id hide">{{id}}</p>
 </div>
+<h4>Add a Comment:</h4>
+<textarea class="comment-body"></textarea>
+<button class="btn btn-primary" id="new-comment-form">Submit</button>
+<script src="/js/comment.js"></script>
