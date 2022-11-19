@@ -2,8 +2,8 @@
   <div class="col-md-6 project-list">
     <h3>Current Projects:</h3>
 
-
-    {{#each user as |post|}}
+    {{#each posts as |post|}}
+    {{#if post.user_id}}
       <div class="row mb-2">
         <div class="col-md-8">
           <h4><a href="/post/{{post.id}}">{{post.post_title}}</a></h4>
@@ -17,6 +17,7 @@
           >DELETE</button>
         </div>
       </div>
+      {{/if}}
     {{/each}}
 
   </div>
