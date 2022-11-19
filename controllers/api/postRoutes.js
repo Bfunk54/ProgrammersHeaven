@@ -4,15 +4,23 @@ const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
   try {
-    const postArr = req.body.post.map((post) => {
-      return {
-        post_title: post.post_title,
-        post: post.post,
-        watch_link: anime.watch_link,
-        more_info: anime.more_info,
-        api_id: anime.api_id
-      };
-    });
+    // const postArr = req.body.post.map((post) => {
+    //   return {
+    //     post_title: post.post_title,
+    //     post: post.post,
+    //     user_id: req.session.id,
+    //   };
+    // });
+
+    const postData = await Post.create({
+      post_title: req.body.name,
+      post: req.body.content,
+      user_id: req.session.user_id,
+    })
+    postData
+
+    // const postData = await Post.create(postArr);
+    // postData
 
     res.status(200).json(newPost);
   } catch (err) {
