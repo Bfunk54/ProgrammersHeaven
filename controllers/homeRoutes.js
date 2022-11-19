@@ -88,7 +88,6 @@ router.get("/create-post", withAuth, (req, res) => {
 
   const currentUser = {
     user_id: req.session.user_id,
-    email: req.session.email,
     name: req.session.name
   }
 
