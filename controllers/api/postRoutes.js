@@ -1,9 +1,12 @@
+// Require packages needed for the post routes
 const router = require("express").Router();
 const { Post } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+// Post route to add a new post in the database
 router.post("/", withAuth, async (req, res) => {
   try {
+    // Create a new post using the data from the create a new post inputs
     const postData = await Post.create({
       post_title: req.body.name,
       post: req.body.content,

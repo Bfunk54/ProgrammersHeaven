@@ -1,8 +1,11 @@
+// Require the packages needed for this express app
 const Sequelize = require("sequelize");
 require("dotenv").config();
 
+// Create a new instance of Sequelize
 let sequelize;
 
+// If the app is running in Heroku, use the Heroku database, otherwise use the local database
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {

@@ -1,3 +1,4 @@
+// Require packages needed for the home routes
 const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    // Pass serialized data and session flag into template
+    // Pass serialized data and session to handlebars
     res.render('homepage', { 
       posts, 
       logged_in: req.session.logged_in 
@@ -27,8 +28,10 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get a single post by id
 router.get('/post/:id', async (req, res) => {
   try {
+    // Find a single post by id and include the user data
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
@@ -38,6 +41,7 @@ router.get('/post/:id', async (req, res) => {
       ],
     });
 
+    // Get the all the comments for that post
     const commentData = await Comment.findAll({
       where: {
         post_id: req.params.id,
@@ -50,10 +54,13 @@ router.get('/post/:id', async (req, res) => {
       ],
     });
 
+    // Serialize the comment data so the template can read it
     const comments = commentData.map((comment) => comment.get({ plain: true }));
 
+    // Serialize the post data so the template can read it
     const post = postData.get({ plain: true });
 
+    // Pass the post, comments, and session data to handlebars
     res.render('single-post', {
       ...post,
       comments,
@@ -75,6 +82,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
+    // Pass the user and session data to handlebars
     res.render('dashboard', {
       ...user,
       logged_in: true
@@ -84,19 +92,23 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
+// Get data to use in the create a post page
 router.get("/create-post", withAuth, (req, res) => {
 
+  // Create an object with the username and user id from the session
   const currentUser = {
     user_id: req.session.user_id,
     name: req.session.name
   }
 
+  // Render the page with that object and pass logged in status to handlebars
   res.render("create-post", {
     currentUser,
     logged_in: req.session.logged_in
   });
 });
 
+// Get data to render the login page if they're not already logged in
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
