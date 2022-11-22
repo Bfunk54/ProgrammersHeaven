@@ -1,13 +1,12 @@
+//Create a function to handle posting a new comment
 const commentFormHandler = async function (event) {
-//   event.preventDefault();
+  // Grab the value of the comment and the post's id
+  const postId = document.querySelector(".post-id").textContent;
+  const body = document.querySelector(".comment-body").value;
 
-  const postId = document.querySelector('.post-id').textContent;
-  const body = document.querySelector('.comment-body').value;
-  console.log(body);
-  console.log(postId);
   if (body) {
-    
-   const response = await fetch(`/api/comment`, {
+    // Send a POST request with the comment and post's id
+    const response = await fetch(`/api/comment`, {
       method: "POST",
       body: JSON.stringify({ postId, body }),
       headers: {
@@ -16,14 +15,14 @@ const commentFormHandler = async function (event) {
     });
 
     if (response.ok) {
-    document.location.reload();
-  }else {
-    alert("Failed to create comment");
-  }
+      document.location.reload();
+    } else {
+      alert("Failed to create comment");
     }
+  }
 };
 
-console.log(document.querySelector("#new-comment-form"));
+// An event listener to the comment button
 document
   .querySelector("#new-comment-form")
   .addEventListener("click", commentFormHandler);
