@@ -1,7 +1,9 @@
+// Require the models in the index
 const User = require("./User");
 const Post = require("./Post");
 const Comment = require("./Comment");
 
+// Create relationships between models
 User.hasMany(Post, {
   foreignKey: "user_id",
   onDelete: "CASCADE",
