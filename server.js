@@ -1,3 +1,4 @@
+// Require all packages needed to start this express app
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -5,6 +6,7 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
+// Require Sequelize
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -14,6 +16,7 @@ const PORT = process.env.PORT || 3001;
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
 
+// Set up a session with a cookie
 const sess = {
   secret: 'Super secret secret',
   cookie: {
@@ -41,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
+// Start the server on the defined port
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening at Heroku or on port ${PORT} at http://localhost:${PORT}`));
 });
