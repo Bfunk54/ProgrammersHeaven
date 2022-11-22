@@ -76,7 +76,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
+      attributes: { exclude: ['password'], include: ['name'] },
       include: [{ model: Post }],
     });
 
@@ -85,6 +85,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     // Pass the user and session data to handlebars
     res.render('dashboard', {
       ...user,
+      user,
       logged_in: true
     });
   } catch (err) {
