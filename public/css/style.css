@@ -5,3 +5,9 @@
 .form-group {
   margin-top: 30px !important;
 }
+
+@media only screen and (max-width: 992px) {
+nav .brand-logo {
+  left: 25% !important;
+}
+}
