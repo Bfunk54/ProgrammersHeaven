@@ -1,6 +1,6 @@
 # [![MIT License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
 
-# Programmers' Heaven
+# Programmers Heaven
 
 ## Description
 This is a web app that shows a great example of a forum, using a database to store login information for users, post data, comments data, and it's all routed to look good out on an html page!
