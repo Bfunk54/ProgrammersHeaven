@@ -6,14 +6,14 @@
 
  
   <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
+    <h4>Current Projects:</h4>
 <ul>
     {{#each posts as |post|}}
     {{#if post.user_id}}
     <li>
       <div class="row mb-2">
         <div class="col-md-8">
-          <h4><a href="/post/{{post.id}}">{{post.post_title}}</a></h4>
+          <h5><a href="/post/{{post.id}}">{{post.post_title}}</a></h5>
         </div>
         <div class="col-md-4">
           <p>{{post.post}}</p>

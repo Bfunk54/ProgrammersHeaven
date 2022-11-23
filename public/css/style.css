@@ -1,9 +1,7 @@
-header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
+.post-labels {
+  font-size: 18px;
 }
 
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
+.form-group {
+  margin-top: 30px !important;
 }
